@@ -37,9 +37,13 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User updateUser(int userId,User user) {
-        Optional<User> userdb = userRepository.findById(userId);
-        if(userdb.isPresent()){
-            return userRepository.save(user);
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if(optionalUser.isPresent()){
+            User userDb = optionalUser.get();
+            userDb.setEmailId(user.getEmailId());
+            userDb.setMobileNo(user.getMobileNo());
+            userDb.setName(user.getName());
+            return userRepository.save(userDb);
         }
         throw new UserNotFoundException(userId);
     }
