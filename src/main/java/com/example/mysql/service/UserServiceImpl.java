@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService{
     public User updateUser(int userId,User user) {
         Optional<User> userdb = userRepository.findById(userId);
         if(userdb.isPresent()){
-            return userRepository.save(userdb.get());
+            return userRepository.save(user);
         }
         throw new UserNotFoundException(userId);
     }
