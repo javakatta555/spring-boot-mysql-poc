@@ -14,7 +14,7 @@ public class CustomResponse {
 
     public static <T> ResponseEntity<Map> ok(T data){
         //Prepare meta info
-        MetaResponse metaInfo = getMeta("SUCCESS", 200, false);
+        MetaResponse metaInfo = getMeta("SUCCESS", false);
         //Prepare response
         Map<String, Object> map = new HashMap<>();
         map.put("meta", metaInfo);
@@ -23,24 +23,23 @@ public class CustomResponse {
     }
 
     public static <T>ResponseEntity<Map> ok(){
-        MetaResponse metaInfo = getMeta("SUCCESS", 200, false);
+        MetaResponse metaInfo = getMeta("SUCCESS", false);
         //Prepare response
         Map<String, Object> map = new HashMap<>();
         map.put("meta", metaInfo);
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
-    public static MetaResponse getMeta(String msg, int statusCode, boolean isError) {
+    public static MetaResponse getMeta(String msg, boolean isError) {
         MetaResponse metaInfo = new MetaResponse();
         metaInfo.setMsg(msg);
-        metaInfo.setStatusCode(statusCode);
         metaInfo.setError(isError);
         return metaInfo;
     }
 
     public static ResponseEntity<Map> notfound(String msg) {
         //Prepare meta info
-        MetaResponse metaInfo = getMeta(msg, 404, true);
+        MetaResponse metaInfo = getMeta(msg, true);
         //Prepare response
         Map<String, Object> map = new HashMap<>();
         map.put("meta", metaInfo);
@@ -48,7 +47,7 @@ public class CustomResponse {
     }
 
     public static <T>ResponseEntity<Map> created(){
-        MetaResponse metaInfo = getMeta("SUCCESS", 201, false);
+        MetaResponse metaInfo = getMeta("SUCCESS", false);
         //Prepare response
         Map<String, Object> map = new HashMap<>();
         map.put("meta", metaInfo);
@@ -57,7 +56,7 @@ public class CustomResponse {
 
     public static ResponseEntity<Map> error(String msg){
         //Prepare meta info
-        MetaResponse metaInfo = getMeta(msg, 500, true);
+        MetaResponse metaInfo = getMeta(msg, true);
         //Prepare response
         Map<String, Object> map = new HashMap<>();
         map.put("meta", metaInfo);
@@ -67,7 +66,7 @@ public class CustomResponse {
 
     public static ResponseEntity<Map> badRequest(String msg){
         //Prepare meta info
-        MetaResponse metaInfo = getMeta(msg, 400, true);
+        MetaResponse metaInfo = getMeta(msg, true);
         //Prepare response
         Map<String, Object> map = new HashMap<>();
         map.put("meta", metaInfo);
